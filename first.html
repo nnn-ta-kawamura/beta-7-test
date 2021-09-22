@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIダヴィンチからの挑戦状 │ Project N</title>
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <svg width="0" height="0" class="hidden">
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.47 24.94" id="arrow" class="arrow_svg">
+      <title>arrow</title>
+      <polygon points="0 24.94 0 19.66 7.35 12.47 0 5.92 0 0 12.47 12.47 0 24.94"/>
+    </symbol>
+  </svg>
+  <header class="header">
+    <div class="container">
+      <div class="header__logo"><img src="assets/images/大宮キャンパスAチーム 背景色アイボリー.png" alt=""></div>
+      <div class="header__name">N・S高生制作サイト</div>
+    </div>
+  </header>
+  <main class="main main-page">
+    <!-- タイトルエリア　ここから -->
+    <h1 class="main-title"><img src="assets/images/ダ・ヴィンチプロNサイト用-現在のビュー.png" alt="AIダヴィンチからの挑戦状"></h1>
+    <!-- タイトルエリア　ここまで -->
+    <div id="stage">
+
+      <!-- STAGE1　ここから -->
+      <div id="sectionStage1" class="stage">
+
+        <!-- STAGE1問題セクション　ここから -->
+        <section class="section">
+          <div class="container">
+            <h2 class="section-title section-title--keycolorlight"><span class="section-title__stage">STAGE：1</span>さぁゲームを始めよう！</h2>
+            <p class="text-center">まずは、この学校の家庭科室の鍵のありかを知らなければ入ることができない。<br>
+              下の画像の謎を解き、鍵のありかをキーワード欄に入力しよう。</p>
+            <p class="text-center">困ったときは、ヒントがある。なるべく見ないようにゲームを進めていこう。</p>
+  
+            <div class="container">
+              <figure class="image__container">
+                <img src="https://github.com/m1lkte4/beta-omiya-A/blob/main/assets/images/A%E3%81%AE%E8%AC%8E%20%E5%88%87%E3%82%8A%E5%8F%96%E3%82%8A%E4%BF%AE%E6%AD%A3.png?raw=true" alt="">
+              </figure>
+
+            </div>
+          </div>
+        </section>
+        <!-- STAGE1問題セクション　ここまで -->
+
+        <!-- STAGE1解答入力セクション　ここから -->
+        <section class="section bg-color--keycolor">
+          <div class="container">
+            <h2 class="section-title"><span class="section-title__stage">STAGE：1</span>キーワードを入力</h2>
+            <h5 class="text-center">※答えはカタカナで書いてね！</h5>
+            <!------------------------------------------------------------------------------------------------------------
+              解答入力欄のコンポーネントです。入力欄・送信ボタン・エラーメッセージを表示します。
+              v-bind:correct="correctAnswer['stage1']['q1']" は正解の解答を指します。
+              v-on:answer-input="answerInput($event, 'stage1', 1)" は送信ボタンをクリックした時の動作を決める関数です。
+              2番目、3番目の1引数 'stage1', 1 はstage1の1問目ということになります。
+              1番麺の引数 $event は正解、不正解の判定を受け取る変数です。
+              []、()の間違い、''の抜けがあると動きません。
+            ------------------------------------------------------------------------------------------------------------>
+            <answer-input v-bind:correct="correctAnswer['stage1']['q1']" v-on:answer-input="answerInput($event, 'stage1', 1)"></answer-input>
+
+            <a class="link-hint" href="hint1.html" target="hint1">ヒントをみる ></a>
+          </div>
+        </section>
+        <!-- STAGE1解答入力セクション　ここまで -->
+
+        <!-- STAGE1クリア画面　ここから -->
+        <!------------------------------------------------------------------------------------------------------
+          ステージを全問正解するとclear['stage1']がtrusになります。
+          v-if="clear['stage1']"はclear['stage1']がtrueになったら表示します。
+          v-bind:class="{isClear:clear['stage1']}"はclear['stage1']がtrueになったら「isClear」クラスを追加します。
+        -------------------------------------------------------------------------------------------------------->
+        <section v-if="clear['stage1']" v-bind:class="{isClear:clear['stage1']}"  class="section section--clear bg-color--gray">
+          <div class="container">
+            <div class="clear-message">
+              <div class="clear-message__title">STAGE：１  クリア！</div>
+              <div class="clear-message__content">家庭科室の扉が開いた！<br>
+                <div class="youtube__container">
+                  <div class="youtube">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZwDkCLgPHps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
+              <button v-on:click="nextStage('stage1')" onclick="location.href='#sectionStage2'" class="clear-message__btn btn">次へ<svg class="btn__arrow"><use xlink:href="#arrow"></use></svg></button>
+            </div>
+          </div>
+        </section>
+        <!-- STAGE1クリア画面　ここまで -->
+
+      </div>
+      <!-- STAGE1　ここまで -->
+
+      <!-- STAGE2　ここから -->
+      <!---------------------------------------------------------------------
+        クリア画面の「次のステージへ」ボタンをクリックしたら表示します。
+        v-if="next['stage1']"はnext['stage1']がtrueになったら表示します。
+      ----------------------------------------------------------------------->
+      <div v-if="next['stage1']" id="sectionStage2" class="stage">
+        <section>
+          <div class="section">
+            <div class="container">
+              <h2 class="section-title section-title--keycolorlight"><span class="section-title__stage">解説</span></h2>
+              <p class="text-center">家庭科室に入ることができた！<br>
+                すぐに目に入ったのは黒板にある４つの謎。<br>
+                これらを解くことで、きっと次のステップに繋がるはずだ！</p>
+            </div>
+          </div>
+          <div class="stage-column__container section bg-color--keycolor">
+            <div class="container">
+              <section class="section">
+                <div class="container">
+                  <a class="btn" href="second.html">次へ<svg class="btn__arrow"><use xlink:href="#arrow"></use></svg></a>
+                  </div>
+                </div>
+                </div>
+              </section>
+      <!-- 解説　ここまで -->
+
+      </div>
+      <footer class="footer section bg-color--gray">
+        <div class="container">
+            <p class="text-center">授業主催： N・S高<br>協力：株式会社SCRAP<br>企画制作：N・S高生</p>
+            <p class="text-center">「リアル脱出ゲーム」は株式会社SCRAPの登録商標です。</p>
+            <p class="text-center">株式会社SCRAPとN・S高で実施した授業「リアル脱出ゲームの作り方」の一環で<br>生徒が制作したものであり、SCRAPが主催/公認するものではありません。</p>
+        </div>
+      </footer>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
